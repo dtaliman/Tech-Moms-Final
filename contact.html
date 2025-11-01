@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact | Dinnelle Taliman Photography</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- Header / navigation -->
+    <header class="site-header">
+        <nav class="nav">
+            <a class="logo" href="home.html">Dinnelle Taliman</a>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a class="active" href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page title -->
+    <section class="page-hero">
+        <h1>Let's Connect</h1>
+        <p>I'd love to capture your story</p>
+    </section>
+
+    <main class="container">
+
+        <!-- Personal intro -->
+        <section class="section contact-intro">
+            <p>
+                I'd love to hear from you! Whether you're ready to book your session or just have a few questions,
+                reach out below and I'll get back to you within 24–48 hours. Let's make some magic together —
+                I can't wait to capture your story!
+            </p>
+        </section>
+
+        <!-- Contact methods & form in two columns -->
+        <div class="contact-wrapper">
+
+            <!-- Left: Direct contact info -->
+            <aside class="contact-info">
+                <h2>Get In Touch</h2>
+
+                <div class="contact-item">
+                    <strong>📧 Email</strong>
+                    <a href="mailto:dinnelletaliman@gmail.com">dinnelletaliman@gmail.com</a>
+                </div>
+
+                <div class="contact-item">
+                    <strong>📱 Phone</strong>
+                    <a href="tel:4357722557">435-772-2557</a>
+                </div>
+
+                <div class="contact-item">
+                    <strong>📍 Location</strong>
+                    <p>Based in Southern Utah<br>Available for travel to surrounding areas</p>
+                </div>
+
+                <div class="social-links">
+                    <h3>Follow Along</h3>
+                    <a href="https://www.facebook.com/dinnelle.taliman/" target="_blank" class="social-btn">
+                        Facebook
+                    </a>
+                    <a href="https://www.linkedin.com/in/dtaliman/" target="_blank" class="social-btn">
+                        LinkedIn
+                    </a>
+                </div>
+            </aside>
+
+            <!-- Right: Contact form -->
+            <form class="contact-form" action="https://formspree.io/f/movppbyo" method="POST">
+
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="sessionType">Session Type *</label>
+                    <select id="sessionType" name="sessionType" required>
+                        <option value="">Select a session type...</option>
+                        <option value="family">Family</option>
+                        <option value="maternity">Maternity</option>
+                        <option value="couple">Couple</option>
+                        <option value="individual">Individual Portrait</option>
+                        <option value="event">Event</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="preferredDate">Preferred Date(s) or Time of Year</label>
+                    <input type="text" id="preferredDate" name="preferredDate"
+                        placeholder="e.g., Fall 2025, or specific dates">
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location Preference</label>
+                    <input type="text" id="location" name="location"
+                        placeholder="Outdoors, studio, or specific location">
+                </div>
+
+                <div class="form-group">
+                    <label for="hearAbout">How did you hear about me?</label>
+                    <select id="hearAbout" name="hearAbout">
+                        <option value="">Select one...</option>
+                        <option value="instagram">Instagram</option>
+                        <option value="facebook">Facebook</option>
+                        <option value="friend">Friend/Referral</option>
+                        <option value="google">Google Search</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Tell me about your vision *</label>
+                    <textarea id="message" name="message" rows="5" required
+                        placeholder="Who you'd love to include in your session, your vision, or any questions you have..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-submit">Send Message</button>
+
+                <p class="form-note">* Required fields</p>
+            </form>
+
+    </main>
+
+    <footer class="footer">
+        <p>© <span id="year"></span> Dinnelle Taliman</p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Simple form submission handler (you'll need to connect this to a real backend)
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Hide form, show thank you message
+            document.querySelector('.contact-form').style.display = 'none';
+            document.getElementById('thankYouMessage').style.display = 'block';
+
+            // In a real implementation, you'd send this data to a server or email service
+            // For now, this just shows the thank you message
+        });
+    </script>
+</body>
+
+</html>

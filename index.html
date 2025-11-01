@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dinnelle Taliman Final</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- Top navigation -->
+    <header class="site-header">
+        <nav class="nav">
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Welcome -->
+    <section class="hero">
+
+        <img src="images/amisky.jpeg" alt="Main Ami Sky Photo">
+        <div class="hero-text">
+            <h1>Capturing family, culture, and everyday magic.</h1>
+            <p>Portraits • Families • Lifestyle</p>
+            <a class="btn" href="contact.html">Book a Session</a>
+        </div>
+    </section>
+
+    <!-- Simple intro -->
+    <main class="container">
+        <section class="intro">
+            <h2>Welcome</h2>
+            <p>
+                I create warm, true-to-life images with an easygoing, guided approach.
+                Scroll to see a few samples and learn more.
+            </p>
+        </section>
+
+        <!-- Tiny gallery grid (just images) -->
+        <section class="grid">
+            <img src="images/nevaehgrad1.jpeg" alt="Gallery image 1">
+            <img src="images/nevaehgrad2.jpeg" alt="Gallery image 2">
+            <img src="images/sample3.jpg" alt="Gallery image 3">
+            <img src="images/sample4.jpg" alt="Gallery image 4">
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© <span id="year"></span> Dinnelle Taliman</p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>
