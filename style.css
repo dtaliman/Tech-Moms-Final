@@ -1,0 +1,645 @@
+/* PHOTOGRAPHY PORTFOLIO - DINNELLE TALIMAN */
+
+/* PORTFOLIO GRID – uniform tiles */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+    padding: 80px;
+    /* keep if you like your padding */
+}
+
+.portfolio-item {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    /* all tiles same shape */
+    overflow: hidden;
+    border-radius: 10px;
+    /* optional rounding */
+    background: var(--light-gray);
+    /* placeholder while loading */
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* uniform crop */
+    transition: transform .35s ease, filter .35s ease;
+    display: block;
+}
+
+.portfolio-item:hover img {
+    transform: scale(1.05);
+    /* subtle hover zoom */
+    filter: brightness(0.95);
+}
+
+/* Optional label under tiles */
+.project-label {
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 12px;
+    color: var(--eggplant);
+}
+
+
+/* Color Variables */
+:root {
+    --black: #0a0908;
+    --gunmetal: #22333b;
+    --almond: #eae0d5;
+    --khaki: #c6ac8f;
+    --walnut-brown: #5e503f;
+}
+
+/* RESET & BASE STYLES */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Georgia, serif;
+    color: var(--gunmetal);
+    background: var(--almond);
+    line-height: 1.7;
+}
+
+h1,
+h2,
+h3 {
+    font-family: system-ui, sans-serif;
+    font-weight: 300;
+    color: var(--black);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* CONTAINER */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 40px;
+}
+
+.section {
+    margin-bottom: 60px;
+}
+
+/* NAVIGATION */
+.site-header {
+    background: transparent;
+    /* Remove black background */
+    position: relative;
+    top: 0;
+    z-index: 100;
+}
+
+/* Social media bar */
+.social-bar {
+    background: var(--walnut-brown);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 20px;
+}
+
+.social-bar a {
+    color: var(--almond);
+    display: flex;
+    align-items: center;
+}
+
+.social-bar a:hover {
+    color: var(--khaki);
+}
+
+.social-bar svg {
+    width: 20px;
+    height: 20px;
+}
+
+.nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 150px;
+    width: auto;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 32px;
+}
+
+.nav-links a {
+    color: var(--gunmetal);
+    /* Dark text instead of light */
+    font-family: system-ui, sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.nav-links a.active {
+    border-bottom: 1px solid var(--khaki);
+}
+
+/* HERO */
+.hero {
+    position: relative;
+    height: 85vh;
+    max-height: 700px;
+}
+
+.hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.75);
+}
+
+.hero-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 0 20px;
+}
+
+.hero h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 200;
+    margin-bottom: 16px;
+    color: white;
+}
+
+.hero p {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    font-family: system-ui, sans-serif;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+}
+
+.btn {
+    display: inline-block;
+    background: transparent;
+    color: white;
+    padding: 14px 32px;
+    border: 2px solid white;
+    font-family: system-ui, sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* INTRO */
+.intro {
+    text-align: center;
+    max-width: 700px;
+    margin: 40px auto;
+}
+
+.intro h2 {
+    font-size: 2.5rem;
+    font-weight: 200;
+    margin-bottom: 20px;
+    color: var(--walnut-brown);
+}
+
+.intro p {
+    font-size: 1.1rem;
+}
+
+/* GALLERY GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 40px 0;
+}
+
+.grid img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+}
+
+/* Base gallery image styles */
+/* Base: don't force a height on ALL images */
+.grid img,
+.gallery-img {
+    width: 100%;
+    height: auto;
+    /* let images keep their natural ratio */
+    display: block;
+    border-radius: 6px;
+}
+
+
+/* Only the selected portrait images get more headroom */
+.gallery-img.portrait {
+    height: 320px;
+    /* make these taller so faces fit */
+    aspect-ratio: 2 / 3;
+    /* optional portrait shape hint */
+    object-fit: cover;
+    object-position: 50% 15%;
+    /* bias the crop upward to avoid chopping heads */
+}
+
+/* Quick fine-tune helpers (use if needed):
+   <img class="gallery-img portrait top|mid|low"> */
+.gallery-img.portrait.top {
+    object-position: 50% 5%;
+}
+
+.gallery-img.portrait.mid {
+    object-position: 50% 20%;
+}
+
+.gallery-img.portrait.low {
+    object-position: 50% 35%;
+}
+
+
+/* PAGE HERO (About/Contact) */
+.page-hero {
+    text-align: center;
+    padding: 80px 40px;
+    background: var(--walnut-brown);
+    color: var(--almond);
+}
+
+.page-hero h1 {
+    font-size: 3rem;
+    font-weight: 200;
+    margin-bottom: 12px;
+    color: var(--almond);
+}
+
+.page-hero p {
+    font-size: 1.2rem;
+}
+
+/* ABOUT PAGE */
+.about-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin: 60px auto;
+}
+
+.about-gallery img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.about-bio {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.about-bio h2 {
+    font-size: 2.2rem;
+    font-weight: 200;
+    margin-bottom: 24px;
+    color: var(--walnut-brown);
+}
+
+.about-bio p {
+    font-size: 1.1rem;
+    line-height: 1.9;
+    margin-bottom: 20px;
+}
+
+.about-bio em {
+    color: var(--walnut-brown);
+}
+
+/* CONTACT PAGE */
+.contact-intro {
+    max-width: 800px;
+    margin: 0 auto 60px;
+    text-align: center;
+    font-size: 1.15rem;
+}
+
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 60px;
+}
+
+.contact-info {
+    background: var(--walnut-brown);
+    color: var(--almond);
+    padding: 40px;
+    height: fit-content;
+}
+
+.contact-info h2 {
+    font-size: 1.8rem;
+    font-weight: 200;
+    margin-bottom: 32px;
+    color: var(--almond);
+}
+
+.contact-item {
+    margin-bottom: 28px;
+}
+
+.contact-item strong {
+    display: block;
+    font-family: system-ui, sans-serif;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    opacity: 0.8;
+}
+
+.contact-item a {
+    color: var(--almond);
+    font-size: 1.05rem;
+}
+
+.contact-item p {
+    font-size: 1.05rem;
+}
+
+.social-links {
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(234, 224, 213, 0.2);
+}
+
+.social-links h3 {
+    font-size: 1rem;
+    font-weight: 300;
+    margin-bottom: 16px;
+    color: var(--almond);
+}
+
+.social-btn {
+    display: block;
+    background: transparent;
+    color: var(--almond);
+    padding: 12px 20px;
+    border: 1px solid var(--almond);
+    text-align: center;
+    margin-bottom: 12px;
+    font-family: system-ui, sans-serif;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+/* FORM */
+.contact-form-wrapper h2 {
+    font-size: 1.8rem;
+    font-weight: 200;
+    margin-bottom: 32px;
+    color: var(--walnut-brown);
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-family: system-ui, sans-serif;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    color: var(--walnut-brown);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 14px 16px;
+    border: 1px solid var(--khaki);
+    background: white;
+    font-family: Georgia, serif;
+    font-size: 1rem;
+    color: var(--gunmetal);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.btn-submit {
+    width: 100%;
+    cursor: pointer;
+    background: var(--walnut-brown);
+    color: var(--almond);
+    border: 2px solid var(--walnut-brown);
+    padding: 16px;
+    font-family: system-ui, sans-serif;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+}
+
+.form-note {
+    font-size: 0.85rem;
+    text-align: center;
+    font-style: italic;
+}
+
+.thank-you-message {
+    background: var(--walnut-brown);
+    color: var(--almond);
+    padding: 50px 40px;
+    text-align: center;
+}
+
+.thank-you-message h3 {
+    font-size: 2rem;
+    font-weight: 200;
+    margin-bottom: 16px;
+    color: var(--almond);
+}
+
+.thank-you-message p {
+    font-size: 1.1rem;
+}
+
+/* FOOTER */
+.footer {
+    background: var(--black);
+    color: var(--khaki);
+    text-align: center;
+    padding: 32px 20px;
+    font-family: system-ui, sans-serif;
+    font-size: 0.9rem;
+}
+
+/* Filter bar */
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin: 10px 0 24px;
+}
+
+.filter-btn {
+    background: transparent;
+    color: var(--walnut-brown);
+    border: 1px solid var(--walnut-brown);
+    padding: 10px 16px;
+    font-family: system-ui, sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color .25s ease, color .25s ease, border-color .25s ease, transform .05s ease;
+}
+
+.filter-btn:hover,
+.filter-btn:focus-visible {
+    background: var(--walnut-brown);
+    color: var(--almond);
+    outline: none;
+}
+
+.filter-btn.is-active {
+    background: var(--walnut-brown);
+    color: var(--almond);
+}
+
+/* Filtered items */
+.grid-item {
+    transition: opacity .25s ease, transform .25s ease;
+}
+
+.grid-item.is-hidden {
+    opacity: 0;
+    transform: scale(0.98);
+    pointer-events: none;
+    position: relative;
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .container {
+        padding: 40px 24px;
+    }
+
+    .logo img {
+        height: 100px;
+    }
+
+    .about-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .about-gallery img {
+        height: 450px;
+    }
+
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-info {
+        order: 2;
+    }
+
+    .contact-form-wrapper {
+        order: 1;
+    }
+}
+
+@media (max-width: 640px) {
+    .hero {
+        height: 70vh;
+    }
+
+    .page-hero {
+        padding: 60px 24px;
+    }
+
+    .page-hero h1 {
+        font-size: 2rem;
+    }
+
+    .nav-links {
+        gap: 16px;
+        font-size: 0.85rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .grid img {
+        height: 300px;
+
+
+    }
+
+    /* BOOK A SESSION BUTTON */
+    .btn {
+        display: inline-block;
+        background: transparent;
+        color: white;
+        padding: 14px 32px;
+        border: 2px solid white;
+        font-family: system-ui, sans-serif;
+        font-size: 0.9rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
+    /* Hover effect */
+    .btn:hover,
+    .btn:focus {
+        background: var(--almond);
+        color: var(--walnut-brown);
+        border-color: var(--almond);
+    }
+
+}

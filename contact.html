@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact | Dinnelle Taliman Photography</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- Header / navigation -->
+    <header class="site-header">
+        <!-- Social media bar -->
+        <div class="social-bar">
+            <a href="https://www.facebook.com/dinnelle.taliman/" target="_blank" aria-label="Facebook">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/dtaliman/" target="_blank" aria-label="LinkedIn">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                </svg>
+            </a>
+        </div>
+
+        <nav class="nav">
+            <a class="logo" href="index.html">
+                <img src="images/logo.png" alt="Taliva Stone Logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a class="active" href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section with Image/ Page Title-->
+    <section class="hero">
+        <img src="images/landscape17.jpeg" alt="Zions landscape">
+        <div class="hero-text">
+            <h1>Let's Connect</h1>
+            <p>I’d love to capture your story</p>
+        </div>
+    </section>
+
+
+
+
+
+    <main class="container">
+
+        <!-- Personal intro -->
+        <section class="section contact-intro">
+            <p>
+                I'd love to hear from you! Whether you're ready to book your session or just have a few questions,
+                reach out below and I'll get back to you within 24–48 hours. Let's make some magic together —
+                I can't wait to capture your story!
+            </p>
+        </section>
+
+        <!-- Contact methods & form in two columns -->
+        <div class="contact-wrapper">
+
+            <!-- Left: Direct contact info -->
+            <aside class="contact-info">
+                <h2>Get In Touch</h2>
+
+                <div class="contact-item">
+                    <strong>📧 Email</strong>
+                    <a href="mailto:dinnelletaliman@gmail.com">dinnelletaliman@gmail.com</a>
+                </div>
+
+                <div class="contact-item">
+                    <strong>📱 Phone</strong>
+                    <a href="tel:4357722557">435-772-2557</a>
+                </div>
+
+                <div class="contact-item">
+                    <strong>📍 Location</strong>
+                    <p>Based in Southern Utah<br>Available for travel to surrounding areas</p>
+                </div>
+
+                <div class="social-links">
+                    <h3>Follow Along</h3>
+                    <a href="https://www.facebook.com/dinnelle.taliman/" target="_blank" class="social-btn">
+                        Facebook
+                    </a>
+                    <a href="https://www.linkedin.com/in/dtaliman/" target="_blank" class="social-btn">
+                        LinkedIn
+                    </a>
+                </div>
+            </aside>
+
+            <!-- Right: Contact form -->
+            <div class="contact-form-wrapper">
+                <h2>Send Me a Message</h2>
+                <form class="contact-form" action="https://formspree.io/f/movppbyo" method="POST">
+
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sessionType">Session Type *</label>
+                        <select id="sessionType" name="sessionType" required>
+                            <option value="">Select a session type...</option>
+                            <option value="family">Family</option>
+                            <option value="maternity">Maternity</option>
+                            <option value="couple">Couple</option>
+                            <option value="individual">Individual Portrait</option>
+                            <option value="event">Event</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="preferredDate">Preferred Date(s) or Time of Year</label>
+                        <input type="text" id="preferredDate" name="preferredDate"
+                            placeholder="e.g., Fall 2025, or specific dates">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Location Preference</label>
+                        <input type="text" id="location" name="location"
+                            placeholder="Outdoors, studio, or specific location">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hearAbout">How did you hear about me?</label>
+                        <select id="hearAbout" name="hearAbout">
+                            <option value="">Select one...</option>
+                            <option value="instagram">Instagram</option>
+                            <option value="facebook">Facebook</option>
+                            <option value="friend">Friend/Referral</option>
+                            <option value="google">Google Search</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Tell me about your vision *</label>
+                        <textarea id="message" name="message" rows="5" required
+                            placeholder="Who you'd love to include in your session, your vision, or any questions you have..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-submit">Send Message</button>
+
+                    <p class="form-note">* Required fields</p>
+                </form>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <p>© <span id="year"></span> Dinnelle Taliman</p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+
+</html>
