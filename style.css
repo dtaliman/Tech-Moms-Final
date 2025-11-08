@@ -1,5 +1,49 @@
 /* PHOTOGRAPHY PORTFOLIO - DINNELLE TALIMAN */
 
+/* PORTFOLIO GRID – uniform tiles */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+    padding: 80px;
+    /* keep if you like your padding */
+}
+
+.portfolio-item {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    /* all tiles same shape */
+    overflow: hidden;
+    border-radius: 10px;
+    /* optional rounding */
+    background: var(--light-gray);
+    /* placeholder while loading */
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* uniform crop */
+    transition: transform .35s ease, filter .35s ease;
+    display: block;
+}
+
+.portfolio-item:hover img {
+    transform: scale(1.05);
+    /* subtle hover zoom */
+    filter: brightness(0.95);
+}
+
+/* Optional label under tiles */
+.project-label {
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 12px;
+    color: var(--eggplant);
+}
+
+
 /* Color Variables */
 :root {
     --black: #0a0908;
@@ -17,26 +61,23 @@
 }
 
 body {
-    font-family: 'Georgia', 'Times New Roman', serif;
+    font-family: Georgia, serif;
     color: var(--gunmetal);
     background: var(--almond);
     line-height: 1.7;
-    overflow-x: hidden;
 }
 
 h1,
 h2,
 h3 {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: system-ui, sans-serif;
     font-weight: 300;
-    letter-spacing: 0.02em;
     color: var(--black);
 }
 
 a {
     color: inherit;
     text-decoration: none;
-    transition: all 0.3s ease;
 }
 
 img {
@@ -52,38 +93,60 @@ img {
 }
 
 .section {
-    margin-bottom: 80px;
+    margin-bottom: 60px;
 }
 
 /* NAVIGATION */
 .site-header {
-    background: var(--black);
-    position: sticky;
+    background: transparent;
+    /* Remove black background */
+    position: relative;
     top: 0;
     z-index: 100;
-    box-shadow: 0 2px 12px rgba(10, 9, 8, 0.1);
+}
+
+/* Social media bar */
+.social-bar {
+    background: var(--walnut-brown);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 20px;
+}
+
+.social-bar a {
+    color: var(--almond);
+    display: flex;
+    align-items: center;
+}
+
+.social-bar a:hover {
+    color: var(--khaki);
+}
+
+.social-bar svg {
+    width: 20px;
+    height: 20px;
 }
 
 .nav {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px 40px;
+    padding: 10px 40px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
 }
 
 .logo {
-    font-family: system-ui, sans-serif;
-    font-weight: 300;
-    font-size: 1.3rem;
-    letter-spacing: 0.1em;
-    color: var(--almond);
-    text-transform: uppercase;
+    display: flex;
+    align-items: center;
 }
 
-.logo:hover {
-    color: var(--khaki);
+.logo img {
+    height: 150px;
+    width: auto;
 }
 
 .nav-links {
@@ -93,37 +156,24 @@ img {
 }
 
 .nav-links a {
-    color: var(--almond);
+    color: var(--gunmetal);
+    /* Dark text instead of light */
     font-family: system-ui, sans-serif;
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    font-weight: 300;
-    position: relative;
+    font-weight: 500;
 }
 
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: var(--khaki);
-    transition: width 0.3s ease;
+.nav-links a.active {
+    border-bottom: 1px solid var(--khaki);
 }
 
-.nav-links a:hover::after,
-.nav-links a.active::after {
-    width: 100%;
-}
-
-/* HERO SECTION */
+/* HERO */
 .hero {
     position: relative;
     height: 85vh;
     max-height: 700px;
-    overflow: hidden;
 }
 
 .hero img {
@@ -148,20 +198,16 @@ img {
 .hero h1 {
     font-size: clamp(2rem, 5vw, 4rem);
     font-weight: 200;
-    letter-spacing: 0.03em;
     margin-bottom: 16px;
     color: white;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .hero p {
     font-size: clamp(1rem, 2vw, 1.3rem);
-    font-weight: 300;
-    letter-spacing: 0.1em;
-    margin-bottom: 32px;
-    opacity: 0.95;
-    text-transform: uppercase;
     font-family: system-ui, sans-serif;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
 }
 
 .btn {
@@ -172,23 +218,15 @@ img {
     border: 2px solid white;
     font-family: system-ui, sans-serif;
     font-size: 0.9rem;
-    font-weight: 400;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    transition: all 0.3s ease;
 }
 
-.btn:hover {
-    background: white;
-    color: var(--black);
-}
-
-/* INTRO SECTION */
+/* INTRO */
 .intro {
     text-align: center;
     max-width: 700px;
-    margin: 0 auto;
-    padding: 40px 20px;
+    margin: 40px auto;
 }
 
 .intro h2 {
@@ -200,8 +238,6 @@ img {
 
 .intro p {
     font-size: 1.1rem;
-    color: var(--gunmetal);
-    line-height: 1.8;
 }
 
 /* GALLERY GRID */
@@ -216,16 +252,47 @@ img {
     width: 100%;
     height: 350px;
     object-fit: cover;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    cursor: pointer;
 }
 
-.grid img:hover {
-    transform: scale(1.02);
-    box-shadow: 0 8px 24px rgba(10, 9, 8, 0.15);
+/* Base gallery image styles */
+/* Base: don't force a height on ALL images */
+.grid img,
+.gallery-img {
+    width: 100%;
+    height: auto;
+    /* let images keep their natural ratio */
+    display: block;
+    border-radius: 6px;
 }
 
-/* PAGE HERO (About/Contact Pages) */
+
+/* Only the selected portrait images get more headroom */
+.gallery-img.portrait {
+    height: 320px;
+    /* make these taller so faces fit */
+    aspect-ratio: 2 / 3;
+    /* optional portrait shape hint */
+    object-fit: cover;
+    object-position: 50% 15%;
+    /* bias the crop upward to avoid chopping heads */
+}
+
+/* Quick fine-tune helpers (use if needed):
+   <img class="gallery-img portrait top|mid|low"> */
+.gallery-img.portrait.top {
+    object-position: 50% 5%;
+}
+
+.gallery-img.portrait.mid {
+    object-position: 50% 20%;
+}
+
+.gallery-img.portrait.low {
+    object-position: 50% 35%;
+}
+
+
+/* PAGE HERO (About/Contact) */
 .page-hero {
     text-align: center;
     padding: 80px 40px;
@@ -236,16 +303,12 @@ img {
 .page-hero h1 {
     font-size: 3rem;
     font-weight: 200;
-    letter-spacing: 0.05em;
     margin-bottom: 12px;
     color: var(--almond);
 }
 
 .page-hero p {
     font-size: 1.2rem;
-    font-weight: 300;
-    letter-spacing: 0.05em;
-    opacity: 0.9;
 }
 
 /* ABOUT PAGE */
@@ -253,7 +316,6 @@ img {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
-    max-width: 1200px;
     margin: 60px auto;
 }
 
@@ -261,11 +323,6 @@ img {
     width: 100%;
     height: 400px;
     object-fit: cover;
-    transition: transform 0.4s ease;
-}
-
-.about-gallery img:hover {
-    transform: scale(1.02);
 }
 
 .about-bio {
@@ -285,13 +342,11 @@ img {
 .about-bio p {
     font-size: 1.1rem;
     line-height: 1.9;
-    color: var(--gunmetal);
     margin-bottom: 20px;
 }
 
 .about-bio em {
     color: var(--walnut-brown);
-    font-style: italic;
 }
 
 /* CONTACT PAGE */
@@ -300,26 +355,19 @@ img {
     margin: 0 auto 60px;
     text-align: center;
     font-size: 1.15rem;
-    line-height: 1.8;
-    color: var(--gunmetal);
 }
 
 .contact-wrapper {
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 60px;
-    max-width: 1200px;
-    margin: 0 auto;
 }
 
-/* Contact Info Sidebar */
 .contact-info {
     background: var(--walnut-brown);
     color: var(--almond);
     padding: 40px;
     height: fit-content;
-    position: sticky;
-    top: 100px;
 }
 
 .contact-info h2 {
@@ -337,8 +385,6 @@ img {
     display: block;
     font-family: system-ui, sans-serif;
     font-size: 0.85rem;
-    font-weight: 400;
-    letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-bottom: 8px;
     opacity: 0.8;
@@ -347,18 +393,10 @@ img {
 .contact-item a {
     color: var(--almond);
     font-size: 1.05rem;
-    border-bottom: 1px solid transparent;
-}
-
-.contact-item a:hover {
-    border-bottom-color: var(--khaki);
-    color: var(--khaki);
 }
 
 .contact-item p {
-    margin: 0;
     font-size: 1.05rem;
-    line-height: 1.6;
 }
 
 .social-links {
@@ -370,8 +408,6 @@ img {
 .social-links h3 {
     font-size: 1rem;
     font-weight: 300;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
     margin-bottom: 16px;
     color: var(--almond);
 }
@@ -386,17 +422,10 @@ img {
     margin-bottom: 12px;
     font-family: system-ui, sans-serif;
     font-size: 0.9rem;
-    letter-spacing: 0.05em;
     text-transform: uppercase;
-    transition: all 0.3s ease;
 }
 
-.social-btn:hover {
-    background: var(--almond);
-    color: var(--walnut-brown);
-}
-
-/* Contact Form */
+/* FORM */
 .contact-form-wrapper h2 {
     font-size: 1.8rem;
     font-weight: 200;
@@ -418,8 +447,6 @@ img {
 .form-group label {
     font-family: system-ui, sans-serif;
     font-size: 0.85rem;
-    font-weight: 400;
-    letter-spacing: 0.05em;
     text-transform: uppercase;
     margin-bottom: 8px;
     color: var(--walnut-brown);
@@ -434,20 +461,11 @@ img {
     font-family: Georgia, serif;
     font-size: 1rem;
     color: var(--gunmetal);
-    transition: border-color 0.3s ease;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--walnut-brown);
 }
 
 .form-group textarea {
     resize: vertical;
     min-height: 150px;
-    line-height: 1.6;
 }
 
 .btn-submit {
@@ -459,26 +477,15 @@ img {
     padding: 16px;
     font-family: system-ui, sans-serif;
     font-size: 0.95rem;
-    font-weight: 400;
-    letter-spacing: 0.1em;
     text-transform: uppercase;
-    transition: all 0.3s ease;
-}
-
-.btn-submit:hover {
-    background: transparent;
-    color: var(--walnut-brown);
 }
 
 .form-note {
     font-size: 0.85rem;
-    color: var(--gunmetal);
     text-align: center;
     font-style: italic;
-    margin-top: -8px;
 }
 
-/* Thank You Message */
 .thank-you-message {
     background: var(--walnut-brown);
     color: var(--almond);
@@ -495,7 +502,6 @@ img {
 
 .thank-you-message p {
     font-size: 1.1rem;
-    line-height: 1.8;
 }
 
 /* FOOTER */
@@ -506,26 +512,67 @@ img {
     padding: 32px 20px;
     font-family: system-ui, sans-serif;
     font-size: 0.9rem;
-    letter-spacing: 0.05em;
 }
 
-/* RESPONSIVE DESIGN */
+/* Filter bar */
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin: 10px 0 24px;
+}
+
+.filter-btn {
+    background: transparent;
+    color: var(--walnut-brown);
+    border: 1px solid var(--walnut-brown);
+    padding: 10px 16px;
+    font-family: system-ui, sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color .25s ease, color .25s ease, border-color .25s ease, transform .05s ease;
+}
+
+.filter-btn:hover,
+.filter-btn:focus-visible {
+    background: var(--walnut-brown);
+    color: var(--almond);
+    outline: none;
+}
+
+.filter-btn.is-active {
+    background: var(--walnut-brown);
+    color: var(--almond);
+}
+
+/* Filtered items */
+.grid-item {
+    transition: opacity .25s ease, transform .25s ease;
+}
+
+.grid-item.is-hidden {
+    opacity: 0;
+    transform: scale(0.98);
+    pointer-events: none;
+    position: relative;
+}
+
+
+/* RESPONSIVE */
 @media (max-width: 900px) {
     .container {
         padding: 40px 24px;
     }
 
-    .nav {
-        padding: 16px 24px;
-    }
-
-    .nav-links {
-        gap: 20px;
+    .logo img {
+        height: 100px;
     }
 
     .about-gallery {
         grid-template-columns: 1fr;
-        gap: 20px;
     }
 
     .about-gallery img {
@@ -534,11 +581,9 @@ img {
 
     .contact-wrapper {
         grid-template-columns: 1fr;
-        gap: 40px;
     }
 
     .contact-info {
-        position: static;
         order: 2;
     }
 
@@ -560,10 +605,6 @@ img {
         font-size: 2rem;
     }
 
-    .logo {
-        font-size: 1rem;
-    }
-
     .nav-links {
         gap: 16px;
         font-size: 0.85rem;
@@ -571,18 +612,34 @@ img {
 
     .grid {
         grid-template-columns: 1fr;
-        gap: 16px;
     }
 
     .grid img {
         height: 300px;
+
+
     }
 
-    .intro h2 {
-        font-size: 2rem;
+    /* BOOK A SESSION BUTTON */
+    .btn {
+        display: inline-block;
+        background: transparent;
+        color: white;
+        padding: 14px 32px;
+        border: 2px solid white;
+        font-family: system-ui, sans-serif;
+        font-size: 0.9rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     }
 
-    .about-bio h2 {
-        font-size: 1.8rem;
+    /* Hover effect */
+    .btn:hover,
+    .btn:focus {
+        background: var(--almond);
+        color: var(--walnut-brown);
+        border-color: var(--almond);
     }
+
 }

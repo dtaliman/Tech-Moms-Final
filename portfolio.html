@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio - Taliva Stone Photography</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Portfolio Grid + Filter + Uniform Tiles -->
+  <style>
+    /* ===== FILTERABLE GRID BASE ===== */
+    #portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+      grid-auto-rows: min-content;
+      align-content: start;
+    }
+
+    #portfolio-grid figure {
+      margin: 0;
+    }
+
+    /* Hidden items must not take up space */
+    #portfolio-grid .grid-item.is-hidden {
+      display: none !important;
+    }
+
+    #portfolio-grid .grid-item:not(.is-hidden) {
+      display: block;
+    }
+
+    /* ===== NEW: UNIFORM TILE SIZING ===== */
+    #portfolio-grid .grid-item {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      /* uniform tiles */
+      overflow: hidden;
+      border-radius: 10px;
+      background: var(--light-gray, #f5f5f5);
+    }
+
+    #portfolio-grid .grid-item a {
+      display: block;
+      height: 100%;
+      width: 100%;
+      line-height: 0;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    #portfolio-grid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* uniform crop */
+      display: block;
+      transition: transform .35s ease, filter .35s ease;
+      will-change: transform;
+    }
+
+    #portfolio-grid .grid-item:hover img {
+      transform: scale(1.05);
+      /* subtle hover zoom */
+      filter: brightness(0.95);
+    }
+
+    /* ===== NEW: SIMPLE LIGHTBOX ===== */
+    #lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 2000;
+    }
+
+    #lightbox.is-open {
+      display: flex;
+    }
+
+    #lightbox img {
+      max-width: 92vw;
+      max-height: 92vh;
+      object-fit: contain;
+      /* show the whole photo */
+      box-shadow: 0 10px 40px rgba(0, 0, 0, .6);
+      border-radius: 8px;
+      background: #111;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header / Nav -->
+  <header class="site-header">
+    <!-- Social media bar -->
+    <div class="social-bar">
+      <a href="https://www.facebook.com/dinnelle.taliman/" target="_blank" aria-label="Facebook">
+        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+          <path
+            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+        </svg>
+      </a>
+      <a href="https://www.linkedin.com/in/dtaliman/" target="_blank" aria-label="LinkedIn">
+        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+          <path
+            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+        </svg>
+      </a>
+    </div>
+
+    <nav class="nav">
+      <a class="logo" href="index.html">
+        <img src="images/logo.png" alt="Taliva Stone Logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio.html" class="active">Portfolio</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section with Image -->
+  <section class="hero">
+    <img src="images/portrait2.jpg" alt="Portfolio Hero Image">
+    <div class="hero-text">
+      <h1>My Work</h1>
+      <p>Capturing moments that tell your story</p>
+    </div>
+  </section>
+
+  <!-- Portfolio (Filterable) -->
+  <section class="section">
+    <div class="container">
+      <div class="intro">
+        <h2>Portfolio</h2>
+        <p>Browse by category or view them all.</p>
+      </div>
+
+      <!-- Filter bar -->
+      <div class="filter-bar" role="tablist" aria-label="Portfolio filters">
+        <button class="filter-btn is-active" role="tab" aria-selected="true" aria-pressed="true"
+          data-filter="all">All</button>
+        <button class="filter-btn" role="tab" aria-selected="false" aria-pressed="false"
+          data-filter="family">Family</button>
+        <button class="filter-btn" role="tab" aria-selected="false" aria-pressed="false"
+          data-filter="portraits">Portraits</button>
+        <button class="filter-btn" role="tab" aria-selected="false" aria-pressed="false"
+          data-filter="landscape">Landscape</button>
+        <button class="filter-btn" role="tab" aria-selected="false" aria-pressed="false" data-filter="fun">Fun</button>
+      </div>
+
+      <!-- Grid -->
+      <div class="grid" id="portfolio-grid">
+        <!-- FAMILY -->
+        <figure class="grid-item" data-cat="family">
+          <!-- NEW: wrap img with link to full image -->
+          <a href="images/fallfam.jpg" class="lb"><img src="images/fallfam.jpg" alt="Family session 1"></a>
+        </figure>
+        <figure class="grid-item" data-cat="family">
+          <a href="images/sisterlake.jpg" class="lb"><img src="images/sisterlake.jpg" alt="Family session 2"></a>
+        </figure>
+        <figure class="grid-item" data-cat="family">
+          <a href="images/kaleiahand.jpg" class="lb"><img src="images/kaleiahand.jpg" alt="Family session 3"></a>
+        </figure>
+
+        <figure class="grid-item" data-cat="family">
+          <a href="images/culture1.jpg" class="lb">
+            <img src="images/culture1.jpg" alt="Family session 4">
+          </a>
+        </figure>
+
+        <figure class="grid-item" data-cat="family">
+          <a href="images/portrait 11.jpg" class="lb">
+            <img src="images/portrait 11.jpg" alt="Family session 5">
+          </a>
+        </figure>
+
+
+        <!-- PORTRAITS -->
+
+
+
+
+        <figure class="grid-item" data-cat="portraits">
+          <a href="images/nevaehgrad1.jpeg" class="lb"><img src="images/nevaehgrad1.jpeg" alt="Nevaeh Grad 1"></a>
+        </figure>
+        <figure class="grid-item" data-cat="portraits">
+          <a href="images/nevaehgrad2.jpeg" class="lb"><img src="images/nevaehgrad2.jpeg" alt="Nevaeh Grad 2"></a>
+        </figure>
+        <figure class=" grid-item" data-cat="portraits">
+            <a href="images/nevaehgrad3.jpeg" class="lb"><img src="images/nevaehgrad3.jpeg" alt="Nevaeh Grad 3"></a>
+        </figure>
+        <figure class="grid-item" data-cat="portraits">
+          <a href="images/nevaehgrad4.jpeg" class="lb"><img src="images/nevaehgrad4.jpeg" alt="Nevaeh Grad 4"></a>
+        </figure>
+        <figure class="grid-item" data-cat="portraits">
+          <a href="images/nevaehgrad5.jpeg" class="lb"><img src="images/nevaehgrad5.jpeg" alt="Nevaeh Grad 5"></a>
+        </figure>
+        <figure class="grid-item" data-cat="portraits">
+          <a href="images/nevaehgrad6.jpeg" class="lb"><img src="images/nevaehgrad6.jpeg" alt="Nevaeh Grad 6"></a>
+        </figure>
+        <figure class="grid-item" data-cat="portraits">
+          <a href="images/nevaehoregon.jpg" class="lb"><img src="images/nevaehoregon.jpg" alt="Nevaeh Grad 7"></a>
+        </figure>
+
+    
+        <figure class="grid-item" data-cat="portraits">
+          <a href="images/amisky.jpeg" class="lb"><img src="images/amisky.jpeg" alt="Ami Sky Desert Sunset"></a>
+        </figure>
+
+
+         <figure class=" grid-item" data-cat="portraits">
+            <a href="images/baby1.jpg" class="lb"><img src="images/baby1.jpg" alt="Portrait 1"></a>
+        </figure>
+
+        <figure class="grid-item" data-cat="portraits">
+          <a href="images/portrait1.jpeg" class="lb">
+            <img src="images/portrait1.jpeg" alt="Portrait 1">
+          </a>
+        </figure>
+
+        <figure class="grid-item" data-cat="portraits">
+          <a href="images/portrait2.jpg" class="lb">
+            <img src="images/portrait2.jpg" alt="Portrait 2">
+          </a>
+        </figure>
+
+        <figure class="grid-item" data-cat="portraits">
+          <a href="images/portrait3.jpg" class="lb">
+            <img src="images/portrait3.jpg" alt="Portrait 3">
+          </a>
+        </figure>
+
+        <figure class="grid-item" data-cat="portraits">
+          <a href="images/portrait4.jpeg" class="lb">
+            <img src="images/portrait4.jpeg" alt="Portrait 4">
+          </a>
+        </figure>
+
+        <figure class="grid-item" data-cat="portraits">
+          <a href="images/portrait5.jpg" class="lb">
+            <img src="images/portrait5.jpg" alt="Portrait 5">
+          </a>
+        </figure>
+
+        <figure class="grid-item" data-cat="portraits">
+          <a href="images/portrait6.jpg" class="lb">
+            <img src="images/portrait6.jpg" alt="Portrait 6">
+          </a>
+        </figure>
+
+        <figure class="grid-item" data-cat="portraits">
+          <a href="images/portrait7.jpg" class="lb">
+            <img src="images/portrait7.jpg" alt="Portrait 7">
+          </a>
+        </figure>
+
+        <figure class="grid-item" data-cat="portraits">
+          <a href="images/portrait8.jpg" class="lb">
+            <img src="images/portrait8.jpg" alt="Portrait 8">
+          </a>
+        </figure>
+
+        <figure class="grid-item" data-cat="portraits">
+          <a href="images/portrait9.jpg" class="lb">
+            <img src="images/portrait9.jpg" alt="Portrait 9">
+          </a>
+        </figure>
+
+        <figure class="grid-item" data-cat="portraits">
+          <a href="images/portrait10.jpg" class="lb">
+            <img src="images/portrait10.jpg" alt="Portrait 10">
+          </a>
+        </figure>
+
+        <figure class="grid-item" data-cat="portraits">
+          <a href="images/portrait11.jpg" class="lb">
+            <img src="images/portrait11.jpg" alt="Portrait 11">
+          </a>
+        </figure>
+
+        <figure class="grid-item" data-cat="portraits">
+          <a href="images/maternity.jpg" class="lb">
+            <img src="images/maternity.jpg" alt="Dinnelle Oregon Maternity">
+          </a>
+        </figure>
+
+          <figure class="grid-item" data-cat="portraits">
+          <a href="images/baby2.jpg" class="lb">
+            <img src="images/baby2.jpg" alt="Baby girl smiling">
+          </a>
+        </figure>
+
+          <figure class="grid-item" data-cat="portraits">
+          <a href="images/baby3.jpg" class="lb">
+            <img src="images/baby3.jpg" alt="Kingi Lake Navajo">
+          </a>
+        </figure>
+
+      
+
+
+
+        <!-- LANDSCAPE -->
+        <figure class="grid-item" data-cat="landscape">
+          <a href="images/landscape1.jpg" class="lb"><img src="images/landscape1.jpg" alt="Landscape 1"></a>
+        </figure>
+        <figure class="grid-item" data-cat="landscape">
+          <a href="images/landscape2.jpeg" class="lb"><img src="images/landscape2.jpeg" alt="Landscape 2"></a>
+        </figure>
+        <figure class="grid-item" data-cat="landscape">
+          <a href="images/landscape3.jpeg" class="lb"><img src="images/landscape3.jpeg" alt="Landscape 3"></a>
+        </figure>
+        <figure class="grid-item" data-cat="landscape">
+          <a href="images/landscape4.jpg" class="lb"><img src="images/landscape4.jpg" alt="Landscape 4"></a>
+        </figure>
+        <figure class="grid-item" data-cat="landscape">
+          <a href="images/landscape5.JPG" class="lb"><img src="images/landscape5.JPG" alt="Landscape 5"></a>
+        </figure>
+        <figure class="grid-item" data-cat="landscape">
+          <a href="images/landscape6.JPG" class="lb"><img src="images/landscape6.JPG" alt="Landscape 6"></a>
+        </figure>
+        <figure class="grid-item" data-cat="landscape">
+          <a href="images/landscape7.jpg" class="lb"><img src="images/landscape7.jpg" alt="Landscape 7"></a>
+        </figure>
+        <figure class="grid-item" data-cat="landscape">
+          <a href="images/landscape8.jpeg" class="lb"><img src="images/landscape8.jpeg" alt="Landscape 8"></a>
+        </figure>
+        <figure class="grid-item" data-cat="landscape">
+          <a href="images/landscape9.jpeg" class="lb"><img src="images/landscape9.jpeg" alt="Landscape 9"></a>
+        </figure>
+        <figure class="grid-item" data-cat="landscape">
+          <a href="images/landscape10.jpg" class="lb"><img src="images/landscape10.jpg" alt="Landscape 10"></a>
+        </figure>
+        <figure class="grid-item" data-cat="landscape">
+          <a href="images/landscape11.JPEG" class="lb"><img src="images/landscape11.JPEG" alt="Landscape 11"></a>
+        </figure>
+        <figure class="grid-item" data-cat="landscape">
+          <a href="images/landscape12.jpeg" class="lb"><img src="images/landscape12.jpeg" alt="Landscape 12"></a>
+        </figure>
+        <figure class="grid-item" data-cat="landscape">
+          <a href="images/landscape13.jpg" class="lb"><img src="images/landscape13.jpg" alt="Landscape 13"></a>
+        </figure>
+        <figure class="grid-item" data-cat="landscape">
+          <a href="images/landscape14.jpg" class="lb"><img src="images/landscape14.jpg" alt="Landscape 14"></a>
+        </figure>
+        <figure class="grid-item" data-cat="landscape">
+          <a href="images/landscape15.JPG" class="lb"><img src="images/landscape15.JPG" alt="Landscape 15"></a>
+        </figure>
+        <figure class="grid-item" data-cat="landscape">
+          <a href="images/landscape16.jpeg" class="lb"><img src="images/landscape16.jpeg" alt="Landscape 16"></a>
+        </figure>
+        <figure class="grid-item" data-cat="landscape">
+          <a href="images/landscape17.jpeg" class="lb"><img src="images/landscape17.jpeg" alt="Landscape 17"></a>
+        </figure>
+        <figure class="grid-item" data-cat="landscape">
+          <a href="images/landscape18.jpeg" class="lb"><img src="images/landscape18.jpeg" alt="Landscape 18"></a>
+        </figure>
+
+        <!-- FUN -->
+        <figure class="grid-item" data-cat="fun">
+          <a href="images/fun1.jpg" class="lb"><img src="images/fun1.jpg" alt="Fun session 1"></a>
+        </figure>
+        <figure class="grid-item" data-cat="fun">
+          <a href="images/fun2.jpg" class="lb"><img src="images/fun2.jpg" alt="Fun session 2"></a>
+        </figure>
+        <figure class="grid-item" data-cat="fun">
+          <a href="images/fun3.jpg" class="lb"><img src="images/fun3.jpg" alt="Fun session 3"></a>
+        </figure>
+
+        <figure class="grid-item" data-cat="fun">
+          <a href="images/fun4.jpg" class="lb"><img src="images/fun4.jpg" alt="Fun session 4"></a>
+        </figure>
+
+        <figure class="grid-item" data-cat="fun">
+          <a href="images/fun5.jpg" class="lb"><img src="images/fun5.jpg" alt="Fun session 5"></a>
+        </figure>
+
+          <figure class="grid-item" data-cat="fun">
+          <a href="images/fun6.jpg" class="lb"><img src="images/fun6.jpg" alt="Fun session 6"></a>
+        </figure>
+
+
+      </div>
+
+
+      <div style="text-align:center; margin-top: 40px;">
+        <a href="contact.html" class="btn btn--dark">Book a Session</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© <span id="year"></span> Dinnelle Taliman Photography. All Rights Reserved.</p>
+  </footer>
+
+  <!-- NEW: Lightbox container -->
+  <div id="lightbox" aria-hidden="true">
+    <img alt="">
+  </div>
+
+  <script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Filter functionality
+    document.addEventListener('DOMContentLoaded', function () {
+      const btns = Array.from(document.querySelectorAll('.filter-btn'));
+      const items = Array.from(document.querySelectorAll('#portfolio-grid .grid-item'));
+
+      function applyFilter(filter) {
+        let visibleCount = 0;
+        items.forEach(item => {
+          const match = filter === 'all' || item.dataset.cat === filter;
+          if (match) {
+            item.classList.remove('is-hidden');
+            item.style.display = '';
+            visibleCount++;
+          } else {
+            item.classList.add('is-hidden');
+            item.style.display = 'none';
+          }
+        });
+      }
+
+      function setActive(btn) {
+        btns.forEach(b => {
+          b.classList.toggle('is-active', b === btn);
+          b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+          b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+        });
+      }
+
+      btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const filter = btn.dataset.filter;
+          setActive(btn);
+          applyFilter(filter);
+        });
+
+        btn.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            btn.click();
+          }
+        });
+      });
+
+      // Optional: read ?filter=family from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const start = (urlParams.get('filter') || 'all').toLowerCase();
+      const startBtn = btns.find(b => b.dataset.filter === start) || btns[0];
+      setActive(startBtn);
+      applyFilter(startBtn.dataset.filter);
+    });
+
+    // ===== NEW: Simple Lightbox (works with filter) =====
+    (function () {
+      const lb = document.getElementById('lightbox');
+      const lbImg = lb.querySelector('img');
+
+      document.addEventListener('click', (e) => {
+        const a = e.target.closest('a.lb');
+        if (!a) return;
+        e.preventDefault();
+        lbImg.src = a.getAttribute('href');
+        lb.classList.add('is-open');
+        lb.setAttribute('aria-hidden', 'false');
+      });
+
+      // Close on click on backdrop or ESC
+      lb.addEventListener('click', (e) => {
+        if (e.target === lb) closeLB();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeLB();
+      });
+
+      function closeLB() {
+        lb.classList.remove('is-open');
+        lb.setAttribute('aria-hidden', 'true');
+        lbImg.removeAttribute('src');
+      }
+    })();
+  </script>
+
+</body>
+
+</html>
